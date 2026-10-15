@@ -1,0 +1,141 @@
+*{
+    box-sizing: border-box;
+    padding:0%;
+    margin:0%;
+}
+
+body {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container{
+    width: 500px;
+    height: auto;
+    border-radius: 15px;
+    background-color: white;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 5px;
+}
+
+.container .head{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+}
+
+.container .head .add-btn1{
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background-color:blue;
+    color:#fff;
+    border-color: blue;
+    border:none;
+    padding: 10px;
+}
+
+
+.task{
+    background-color:whitesmoke;
+    margin-top: 10px;
+    border-radius: 15px;
+    direction: rtl;
+    padding: 5px;
+    border-right: 5px solid blueviolet;
+}
+
+.task:hover{
+    transform: translate3d(1px,-5px,5px);
+}
+
+
+.task .info .History{
+    display: flex;
+    justify-content: space-between;
+}
+
+.task .info .History .action .bt-bt2,.bt-bt3-notdone,.bt-bt3,.bt-bt4{
+    width: 40px;
+    height: 40px;
+    border-radius: 50px;
+    border: none;
+}
+
+.task .info .History .action .bt-bt2{
+    background-color:rgb(201, 109, 109);
+    color: white;
+    padding: 7px;
+}
+
+.task .info .History .action .bt-bt2:hover{
+    background-color:red;
+}
+
+
+.task .info .History .action .bt-bt3-notdone{
+    background-color: rgb(207, 152, 49);
+    color: white;
+    padding: 7px;
+}
+
+.task .info .History .action .bt-bt3-notdone:hover{
+    background-color:orange;
+}
+
+
+.task .info .History .action .bt-bt3{
+    background-color: rgb(107, 186, 107);
+    color: white;
+    padding: 7px;
+}
+
+.task .info .History .action .bt-bt3:hover{
+    background-color: rgb(31, 154, 31);
+}
+
+.task .info .History .action .bt-bt4{
+    background-color:rgb(103, 103, 163);
+    color: white;
+    padding: 7px;
+}
+
+.task .info .History .action .bt-bt4:hover{
+    background-color: blueviolet;
+}
+
+
+.task .info .History .action{
+    margin-bottom: 30px;
+}
+
+.done{
+    background-color:rgba(186, 222, 186, 0.67)
+}
+
+.done .info .h2-1{
+    font-size: 25px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-decoration: line-through;
+    color: gray;
+    padding-bottom: 15px;
+}
+
+.task .info .h2-1{
+    font-size: 25px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    padding-bottom: 15px;
+}
+
+.task .info .History .History2 span{
+    color: gray;
+}
+
+

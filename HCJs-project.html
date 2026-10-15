@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./Css.Css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+</head>
+<body>
+    <div id="container" class="container">
+        <div class="head">
+            <button id="add-btn1" class="add-btn1">
+                <span class="material-symbols-outlined">add</span>
+            </button>
+            <h1 class="h1-1">To Do List</h1>
+        </div>
+        
+        <div id="title" class="title"></div>
+    </div>
+</body>
+</html>
+
+<script>
+    let tasks=[
+        {
+            title:"read a book",
+            date:"1/1/2026",
+            isDone:false
+        },
+
+        {
+            title:"going to the gym",
+            date:"1/1/2026",
+            isDone:false
+        },
+
+        {
+            title:"make a sandwish",
+            date:"1/1/2026",
+            isDone:false
+        },
+        
+        {
+            title:"Eat the sandwish",
+            date:"1/1/2026",
+            isDone:true
+        }
+    ]
+    function filltaskonthepage(){
+        document.getElementById("title").innerHTML="";
+        let index=0;
+        for(let task of tasks){
+            let content=`
+                <div class="task ${task.isDone ? 'done':''}">
+                    <div class="info">
+                        <h2 class="h2-1">${task.title}</h2>
+                        <div class="History">
+
+                            <div class="History2">
+                                <span class="material-symbols-outlined">calendar_month</span>
+                                <span>${task.date}</span>
+    
+                            </div>
+
+                            <div class="action">
+                                <button onclick="deleteTask(${index})" class="bt-bt2">
+                                    <span class="material-symbols-outlined">delete</span>
+                                </button>    
+
+                                ${
+                                    task.isDone
+                                    ? ` <button onclick="toggleTaskCompliction(${index})" class="bt-bt3-notdone">
+                                            <span class="material-symbols-outlined">cancel</span>
+                                        </button>`
+                                    :`  <button onclick="toggleTaskCompliction(${index})" class="bt-bt3">
+                                            <span class="material-symbols-outlined">check_circle</span>   
+                                        </button>`
+                                }
+
+                                <button onclick="editTask(${index})" class="bt-bt4">
+                                    <span class="material-symbols-outlined">edit</span>    
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            `
+            document.getElementById("title").innerHTML+=content;
+            index++;
+        }
+    }
+        function getTaskFromStorge(){
+        let retriv =JSON.parse(localStorage.getItem("tasks"));
+        tasks=retriv ??[];
+    }
+
+    getTaskFromStorge();
+
+    filltaskonthepage();
+    document.getElementById("add-btn1").addEventListener("click",function(){
+        let now=new Date();
+        let date=
+            now.getDate()
+            +"/"+
+            (now.getMonth()+1)
+            +"/"+
+            now.getFullYear();
+        let taskName = prompt("الرجاء ادخال عنوان المهمة");
+        if(taskName===null||taskName.trim()===""){
+            return;
+        }
+
+        let taskOpj =  {
+            title:taskName.trim(),
+            date:date,
+            isDone:false
+        };
+
+        tasks.push(taskOpj);
+        storTask();
+        filltaskonthepage();
+    });
+
+    function deleteTask(index){
+        let task=tasks[index];
+        let isConfirmed= confirm("هل انت متأكد من حذف " + task.title);
+
+        if(isConfirmed){
+            tasks.splice(index,1);
+            storTask();
+            filltaskonthepage();
+        }
+    }
+
+    function editTask (index){
+        let task=tasks[index];
+        let newTaskName=prompt("الرجاء ادخل عنوان المهمة الجديد",task.title);
+
+        if(newTaskName===null||newTaskName.trim()===""){
+            return;
+        }
+
+        task.title=newTaskName.trim();
+        storTask();
+        filltaskonthepage();
+    }
+
+    function toggleTaskCompliction(index){
+        tasks[index].isDone=!tasks[index].isDone;
+        storTask();
+        filltaskonthepage();
+    }       
+    
+    function storTask(){
+        localStorage.setItem("tasks",JSON.stringify(tasks));
+    }
+
+</script>
